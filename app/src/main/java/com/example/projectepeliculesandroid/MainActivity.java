@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         RadioGroup grup = findViewById(R.id.grupo);
         RadioButton correcto = findViewById(R.id.radioButton1);
-        RadioButton falso = findViewById(R.id.radioButton2);
+        RadioButton fals = findViewById(R.id.radioButton2);
 
         TextView resp = findViewById(R.id.respuesta);
 
