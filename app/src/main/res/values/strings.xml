@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">ProjectepeliculesAndroid</string>
+    <string name="article_text" />
+    <string name="a_quin_any_es_va_estrenar_la_pelicula">A quin any es va estrenar la pelicula?</string>
+    <string name="_1925">1925</string>
+    <string name="_1945">1945</string>
+    <string name="_1989">1989</string>
+    <string name="_2003">2003</string>
+    <string name="alien_2">Alien 2</string>
+    <string name="_1986">1986</string>
+    <string name="_2001">2001</string>
+    <string name="_1975">1975</string>
+    <string name="_1999">1999</string>
+    <string name="_2004">2004</string>
+    <string name="_1977">1977</string>
+    <string name="_1995">1995</string>
+    <string name="_1982">1982</string>
+</resources>
