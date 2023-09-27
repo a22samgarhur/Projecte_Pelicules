@@ -1,0 +1,297 @@
+{
+    "preguntes": [
+      {
+        "id": 1,
+        "pregunta": "Alien 2",
+        "respostes": [
+          {
+            "id": 1,
+            "resposta": "1994",
+            "correcta": false
+          },
+          {
+            "id": 2,
+            "resposta": "1986",
+            "correcta": true
+          },
+          {
+            "id": 3,
+            "resposta": "2001",
+            "correcta": false
+          },
+          {
+            "id": 4,
+            "resposta": "1974",
+            "correcta": false
+          }
+        ],
+        "imatge": "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRJpNdu93EWX22O8Xd7MWd1ESXAThNWxCJp1XSM4GJ3Ixh8Wpvc"
+      },
+      {
+        
+            "id": 2,
+            "pregunta": "El cuervo",
+            "respostes": [
+              {
+                "id": 1,
+                "resposta": "1977",
+                "correcta": false
+              },
+              {
+                "id": 2,
+                "resposta": "2005",
+                "correcta": false
+              },
+              {
+                "id": 3,
+                "resposta": "1994",
+                "correcta": true
+              },
+              {
+                "id": 4,
+                "resposta": "1999",
+                "correcta": false
+              }
+            ],
+            "imatge": "https://pics.filmaffinity.com/El_cuervo-267449742-large.jpg"
+          }
+        
+
+      ,{
+        "id": 3,
+        "pregunta": "Shrek",
+        "respostes": [
+          {
+            "id": 1,
+            "resposta": "2001",
+            "correcta": true
+          },
+          {
+            "id": 2,
+            "resposta": "1995",
+            "correcta": false
+          },
+          {
+            "id": 3,
+            "resposta": "2003",
+            "correcta": false
+          },
+          {
+            "id": 4,
+            "resposta": "1997",
+            "correcta": false
+          }
+        ],
+        "imatge": "https://play-lh.googleusercontent.com/SU1hRumo0t-zFebkVVlesNb6a1mHYPxxQJX-49jYayrMIrsmU135uxgcOglMcCB_kHfb=w240-h480-rw"
+
+
+      },{
+        "id": 4,
+        "pregunta": "The fast and Furious",
+        "respostes": [
+          {
+            "id": 1,
+            "resposta": "2003",
+            "correcta": false
+          },
+          {
+            "id": 2,
+            "resposta": "1992",
+            "correcta": false
+          },
+          {
+            "id": 3,
+            "resposta": "1984",
+            "correcta": false
+          },
+          {
+            "id": 4,
+            "resposta": "2001",
+            "correcta": true
+          }
+        ],
+        "imatge": "https://m.media-amazon.com/images/M/MV5BNzlkNzVjMDMtOTdhZC00MGE1LTkxODctMzFmMjkwZmMxZjFhXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_.jpg"
+},{
+    "id": 5,
+    "pregunta": "Batman: El caballero Oscuro",
+    "respostes": [
+      {
+        "id": 1,
+        "resposta": "1975",
+        "correcta": false
+      },
+      {
+        "id": 2,
+        "resposta": "2012",
+        "correcta": false
+      },
+      {
+        "id": 3,
+        "resposta": "2008",
+        "correcta": true
+      },
+      {
+        "id": 4,
+        "resposta": "2015",
+        "correcta": false
+      }
+    ],
+    "imatge": "https://musicart.xboxlive.com/7/aa411100-0000-0000-0000-000000000002/504/image.jpg?w=1920&h=1080"
+},{
+    "id": 6,
+    "pregunta": "Terminator 2",
+    "respostes": [
+      {
+        "id": 1,
+        "resposta": "1991",
+        "correcta": true
+      },
+      {
+        "id": 2,
+        "resposta": "2001",
+        "correcta": false
+      },
+      {
+        "id": 3,
+        "resposta": "2000",
+        "correcta": false
+      },
+      {
+        "id": 4,
+        "resposta": "1984",
+        "correcta": false
+      }
+    ],
+    "imatge": "https://pics.filmaffinity.com/Terminator_2_El_juicio_final-825143697-large.jpg"
+},{
+    "id": 7,
+    "pregunta": "Matrix",
+    "respostes": [
+      {
+        "id": 1,
+        "resposta": "2002",
+        "correcta": false
+      },
+      {
+        "id": 2,
+        "resposta": "1995",
+        "correcta": false
+      },
+      {
+        "id": 3,
+        "resposta": "1999",
+        "correcta": true
+      },
+      {
+        "id": 4,
+        "resposta": "2004",
+        "correcta": false
+      }
+    ],
+    "imatge": "https://pics.filmaffinity.com/Matrix-155050517-large.jpg"
+},{
+    "id": 8,
+    "pregunta": "Ready Player One",
+    "respostes": [
+      {
+        "id": 1,
+        "resposta": "2005",
+        "correcta": false
+      },
+      {
+        "id": 2,
+        "resposta": "2014",
+        "correcta": false
+      },
+      {
+        "id": 3,
+        "resposta": "1995",
+        "correcta": false
+      },
+      {
+        "id": 4,
+        "resposta": "2018",
+        "correcta": true
+      }
+    ],
+    "imatge": "https://pics.filmaffinity.com/Ready_Player_One-508487059-large.jpg"
+},{
+    "id": 9,
+    "pregunta": "Harry Potter y las reliquias de la muerte parte 1",
+    "respostes": [
+      {
+        "id": 1,
+        "resposta": "2001",
+        "correcta": false
+      },
+      {
+        "id": 2,
+        "resposta": "2014",
+        "correcta": false
+      },
+      {
+        "id": 3,
+        "resposta": "2010",
+        "correcta": true
+      },
+      {
+        "id": 4,
+        "resposta": "2019",
+        "correcta": false
+      }
+    ],
+    "imatge": "https://upload.wikimedia.org/wikipedia/ca/3/31/HP7part1poster.jpg"
+},{
+    "id": 10,
+    "pregunta": "Tron",
+    "respostes": [
+      {
+        "id": 1,
+        "resposta": "1971",
+        "correcta": false
+      },
+      {
+        "id": 2,
+        "resposta": "1983",
+        "correcta": true
+      },
+      {
+        "id": 3,
+        "resposta": "2000",
+        "correcta": false
+      },
+      {
+        "id": 4,
+        "resposta": "1988",
+        "correcta": false
+      }
+    ],
+    "imatge": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQlyzhUnusCYaGrqn0YiW7lhUFzgTQegqDgLfpsmH_HtG93p3l7"
+},{
+    "id": 11,
+    "pregunta": "Conan el barbaro",
+    "respostes": [
+      {
+        "id": 1,
+        "resposta": "1999",
+        "correcta": false
+      },
+      {
+        "id": 2,
+        "resposta": "1985",
+        "correcta": false
+      },
+      {
+        "id": 3,
+        "resposta": "1982",
+        "correcta": true
+      },
+      {
+        "id": 4,
+        "resposta": "1990",
+        "correcta": false
+      }
+    ],
+    "imatge": "https://pics.filmaffinity.com/Conan_el_baarbaro-679144812-large.jpg"
+}]}
+  
