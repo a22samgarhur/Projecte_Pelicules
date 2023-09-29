@@ -2,8 +2,10 @@ package com.example.projectepeliculesandroid;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -28,10 +30,15 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     public int acertades = 0;
     public ArrayList respostes = new ArrayList();
+    private CountDownTimer countDownTimer;
+    private TextView temporizador;
+    private final long tiempoTemporizador = 30000; // 30 segundos
+    private final long intervaloTemporizador = 1000; // 1 segundo
     List<RadioGroup> listaRadioGroup = new ArrayList<>();
     List<Pregunta> listaObjetoPregunta = new ArrayList<>();
     List<String> contestadasCorrectas = new ArrayList<>();
     List<String> contestadasIncorrectas = new ArrayList<>();
+    Button enviar;
     int duracion = Toast.LENGTH_SHORT;
     int contadorCorrectas=0;
     int contadorIncorrectas=0;
@@ -47,6 +54,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         //Llamamos a la vista de linearleyaout para incluirle ahi los botones
         LinearLayout linear = findViewById(R.id.linear);
+        temporizador = findViewById(R.id.textViewtemporizador);
+        iniciarTemporizador();//Llamamos a la funcion para que inicie el temporizador
+
+
         try {
             JSONObject obj = new JSONObject(cargarJSONDeAsset());
             JSONArray objecte = obj.getJSONArray("preguntes");
@@ -79,11 +90,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        Button enviar = new Button(this);
+        enviar = new Button(this);
         enviar.setText("Enviar respostes");
         linear.addView(enviar);
 
         enviar.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SuspiciousIndentation")
             @Override
             public void onClick(View v) {
 
@@ -118,6 +130,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     todasContestadas=true;
                     enviar.setEnabled(false);
 
+
+
                 }
                 else
                     mensaje="Faltan preguntas por contestar";
@@ -128,6 +142,41 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 toast.show();//Usamos show para que muestre el mensaje
             }
         });
+    }
+
+    private void iniciarTemporizador() {
+        countDownTimer = new CountDownTimer(tiempoTemporizador, intervaloTemporizador) {
+
+            @Override
+            public void onTick(long millisUntilFinished) {
+                // Este método se llama en cada intervalo (cada segundo en este caso)
+                long segundosRestantes = millisUntilFinished / 1000;
+                temporizador.setText("Tiempo restante: " + segundosRestantes + " segundos");
+            }
+
+            @Override
+            public void onFinish() {
+                // Acciones a realizar cuando el temporizador llega a cero
+
+                String mensaje = "¡Tiempo agotado!";
+                enviar.setEnabled(false);
+                Toast toast = Toast.makeText(getApplicationContext(), mensaje, duracion);
+                toast.show();
+            }
+        };
+
+        // Iniciar el temporizador
+        countDownTimer.start();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        // Detener el temporizador para evitar fugas de memoria
+        if (countDownTimer != null) {
+            countDownTimer.cancel();
+        }
     }
 
     //Procedimiento para crear las preguntas segun los datos del JSON
