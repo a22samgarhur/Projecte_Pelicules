@@ -40,12 +40,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     List<String> contestadasIncorrectas = new ArrayList<>();
     Button enviar;
     int duracion = Toast.LENGTH_SHORT;
-    int contadorCorrectas=0;
-    int contadorIncorrectas=0;
-    Boolean todasContestadas=false;
+    int contadorCorrectas = 0;
+    int contadorIncorrectas = 0;
+    Boolean todasContestadas = false;
     ;
-
-
 
 
     @Override
@@ -76,15 +74,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 JSONArray respuestas = preguntes.getJSONArray("respostes");
                 List<String> listarespuestas = new ArrayList<String>();
-                HashMap<String,Boolean>conjuntorespuestas=new HashMap<String, Boolean>();
+                HashMap<String, Boolean> conjuntorespuestas = new HashMap<String, Boolean>();
 
                 for (int j = 0; j < respuestas.length(); j++) {
                     JSONObject respuesta = respuestas.getJSONObject(j);
-                    conjuntorespuestas.put(respuesta.getString("resposta"),respuesta.getBoolean("correcta"));
+                    conjuntorespuestas.put(respuesta.getString("resposta"), respuesta.getBoolean("correcta"));
                     listarespuestas.add(respuesta.getString("resposta"));
                 }
                 //Log.d("Respostes", listarespuestas.toString());//Para ver las respuestas
-                Pregunta objetoPregunta = new Pregunta(id,pregunta,conjuntorespuestas,listarespuestas,url);
+                Pregunta objetoPregunta = new Pregunta(id, pregunta, conjuntorespuestas, listarespuestas, url);
                 generarPreguntas(objetoPregunta);
                 listaObjetoPregunta.add(objetoPregunta);
             }
@@ -99,42 +97,40 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onClick(View v) {
 
-                String mensaje="";
+                String mensaje = "";
 
-                int contadorPreguntes=0;
+                int contadorPreguntes = 0;
                 for (int i = 0; i < listaRadioGroup.size(); i++) {
 
-                    String valor="0";
-                    int id =listaRadioGroup.get(i).getCheckedRadioButtonId();//Cogemos la ID del boton pulsado
+                    String valor = "0";
+                    int id = listaRadioGroup.get(i).getCheckedRadioButtonId();//Cogemos la ID del boton pulsado
 
                     //Hacemos el condicional de si hay un boton pulsado
                     if (id != -1) {
                         contadorPreguntes++;//Hacemos un contador para saber las respuestas que vamos pulsando
                         RadioButton button = findViewById(id);//Creamos un boton i le ponemos el valor de la id que hemos extraido del Radio group
-                        valor= button.getText().toString();//Aqui cogemos el valor que contiene el boton
+                        valor = button.getText().toString();//Aqui cogemos el valor que contiene el boton
 
                         //Miramos en nuestra lista del objeto Pregunta si el valor(la key para nuestro HASMAP) del boton que hemos cogido, es true o false
-                        if(listaObjetoPregunta.get(i).respostas.get(valor)==true){
+                        if (listaObjetoPregunta.get(i).respostas.get(valor) == true) {
                             contadorCorrectas++;//Si es true sumamos 1 a la lista del contador de correctas
                             contestadasCorrectas.add(valor);//Añadimos la respuesta que hemos contestado correctamente a la lista de correctas
-                        }
-                        else
+                        } else
                             contadorIncorrectas++;//Si es false sumamos 1 a la lista del contador de falsas
-                            contestadasIncorrectas.add(valor);//Añadimos la respuesta que hemos contestado correctamente a la lista de incorrectas
+                        contestadasIncorrectas.add(valor);//Añadimos la respuesta que hemos contestado correctamente a la lista de incorrectas
                     }
 
                 }
 
                 //Si todas las respuestas han sido contestadas
-                if(contadorPreguntes==listaRadioGroup.size()){
-                    mensaje="Todas las preguntas han sido contestadas";//Cambiamos el mensaje
-                    todasContestadas=true;
+                if (contadorPreguntes == listaRadioGroup.size()) {
+                    mensaje = "Todas las preguntas han sido contestadas";//Cambiamos el mensaje
+                    todasContestadas = true;
                     enviar.setEnabled(false);//Se desactivara el boton al cliclar
                     countDownTimer.cancel();//Se parara el temporizador al cliclar
-                }
-                else
-                    mensaje="Faltan preguntas por contestar";
-                    todasContestadas=false;
+                } else
+                    mensaje = "Faltan preguntas por contestar";
+                todasContestadas = false;
 
                 //Creamos Toast para que cree un mensaje emergente
                 Toast toast = Toast.makeText(getApplicationContext(), mensaje, duracion);
@@ -179,7 +175,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     //Procedimiento para crear las preguntas segun los datos del JSON
-    private void generarPreguntas(Pregunta pregunta){
+    private void generarPreguntas(Pregunta pregunta) {
 
         //Llamamos a la vista de linearleyaout para incluirle ahi los botones
         LinearLayout linear = findViewById(R.id.linear);
@@ -200,7 +196,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         //Hacemos un bucle para ir iterando en la lista de respuestas
         for (int i = 0; i < pregunta.respostas.size(); i++) {
-            botons[i]= new RadioButton(this);//Creamos un Radiobuton con la posicion de la i
+            botons[i] = new RadioButton(this);//Creamos un Radiobuton con la posicion de la i
             botons[i].setText(pregunta.llistaRespostas.get(i));//Añadimos el contenido de respuestas al Radiobuton
             grupo.addView(botons[i]);//Añadimos el Radiobuton al Radiogrup
         }

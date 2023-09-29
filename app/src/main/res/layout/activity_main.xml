@@ -11,7 +11,7 @@
         android:id="@+id/cabezera"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/a_quin_any_es_va_estrenar_la_pelicula"
+        android:text="En que año se estreno la pelicula?"
         android:textAllCaps="false"
         android:textColor="@color/black"
         android:textColorHighlight="#AC5050"
@@ -38,7 +38,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
 
         </LinearLayout>
 
