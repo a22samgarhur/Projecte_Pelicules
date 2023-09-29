@@ -54,7 +54,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         //Llamamos a la vista de linearleyaout para incluirle ahi los botones
         LinearLayout linear = findViewById(R.id.linear);
-        temporizador = findViewById(R.id.textViewtemporizador);
+        temporizador = findViewById(R.id.textViewtemporizador);//Inicializamos el Text view del temporizador
+        temporizador.setTextColor(Color.RED);
         iniciarTemporizador();//Llamamos a la funcion para que inicie el temporizador
 
 
@@ -95,7 +96,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         linear.addView(enviar);
 
         enviar.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("SuspiciousIndentation")
             @Override
             public void onClick(View v) {
 
@@ -125,13 +125,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 }
 
+                //Si todas las respuestas han sido contestadas
                 if(contadorPreguntes==listaRadioGroup.size()){
-                    mensaje="Todas las preguntas han sido contestadas";
+                    mensaje="Todas las preguntas han sido contestadas";//Cambiamos el mensaje
                     todasContestadas=true;
-                    enviar.setEnabled(false);
-
-
-
+                    enviar.setEnabled(false);//Se desactivara el boton al cliclar
+                    countDownTimer.cancel();//Se parara el temporizador al cliclar
                 }
                 else
                     mensaje="Faltan preguntas por contestar";
@@ -151,13 +150,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void onTick(long millisUntilFinished) {
                 // Este método se llama en cada intervalo (cada segundo en este caso)
                 long segundosRestantes = millisUntilFinished / 1000;
-                temporizador.setText("Tiempo restante: " + segundosRestantes + " segundos");
+                temporizador.setText("TIEMPO RESTANTE: " + segundosRestantes + " segundos");
             }
 
             @Override
             public void onFinish() {
                 // Acciones a realizar cuando el temporizador llega a cero
-
                 String mensaje = "¡Tiempo agotado!";
                 enviar.setEnabled(false);
                 Toast toast = Toast.makeText(getApplicationContext(), mensaje, duracion);
@@ -167,6 +165,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         // Iniciar el temporizador
         countDownTimer.start();
+
     }
 
     @Override
