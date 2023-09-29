@@ -30,9 +30,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public ArrayList respostes = new ArrayList();
     List<RadioGroup> listaRadioGroup = new ArrayList<>();
     List<Pregunta> listaObjetoPregunta = new ArrayList<>();
+    List<String> contestadasCorrectas = new ArrayList<>();
+    List<String> contestadasIncorrectas = new ArrayList<>();
     int duracion = Toast.LENGTH_SHORT;
     int contadorCorrectas=0;
     int contadorIncorrectas=0;
+    Boolean todasContestadas=false;
     ;
 
 
@@ -85,43 +88,43 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void onClick(View v) {
 
                 String mensaje="";
-                Boolean todasContestadas=false;
+
                 int contadorPreguntes=0;
                 for (int i = 0; i < listaRadioGroup.size(); i++) {
 
                     String valor="0";
-                    int id =listaRadioGroup.get(i).getCheckedRadioButtonId();
+                    int id =listaRadioGroup.get(i).getCheckedRadioButtonId();//Cogemos la ID del boton pulsado
 
+                    //Hacemos el condicional de si hay un boton pulsado
                     if (id != -1) {
-                        todasContestadas=true;
-                        contadorPreguntes++;
-                        RadioButton button = findViewById(id);
-                        valor= button.getText().toString();
+                        contadorPreguntes++;//Hacemos un contador para saber las respuestas que vamos pulsando
+                        RadioButton button = findViewById(id);//Creamos un boton i le ponemos el valor de la id que hemos extraido del Radio group
+                        valor= button.getText().toString();//Aqui cogemos el valor que contiene el boton
+
+                        //Miramos en nuestra lista del objeto Pregunta si el valor(la key para nuestro HASMAP) del boton que hemos cogido, es true o false
+                        if(listaObjetoPregunta.get(i).respostas.get(valor)==true){
+                            contadorCorrectas++;//Si es true sumamos 1 a la lista del contador de correctas
+                            contestadasCorrectas.add(valor);//Añadimos la respuesta que hemos contestado correctamente a la lista de correctas
+                        }
+                        else
+                            contadorIncorrectas++;//Si es false sumamos 1 a la lista del contador de falsas
+                            contestadasIncorrectas.add(valor);//Añadimos la respuesta que hemos contestado correctamente a la lista de incorrectas
                     }
-                    else
-                        todasContestadas=false;
-
-
-                    if(listaObjetoPregunta.get(i).respostas.get(valor)==true){
-                        Log.d("Valor boton",listaObjetoPregunta.get(i).respostas.get(valor).toString());
-                        contadorCorrectas++;
-                    }
-                    else
-                        contadorIncorrectas++;
-
 
                 }
 
                 if(contadorPreguntes==listaRadioGroup.size()){
                     mensaje="Todas las preguntas han sido contestadas";
-
+                    todasContestadas=true;
+                    enviar.setEnabled(false);
 
                 }
                 else
                     mensaje="Faltan preguntas por contestar";
+                    todasContestadas=false;
 
                 //Creamos Toast para que cree un mensaje emergente
-                Toast toast = Toast.makeText(getApplicationContext(), mensaje+"Respostas correctas: "+contadorCorrectas+"\n Respostas incorrectas: "+contadorIncorrectas, duracion);
+                Toast toast = Toast.makeText(getApplicationContext(), mensaje, duracion);
                 toast.show();//Usamos show para que muestre el mensaje
             }
         });
