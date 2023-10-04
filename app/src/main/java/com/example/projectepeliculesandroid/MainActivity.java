@@ -38,6 +38,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     List<Pregunta> listaObjetoPregunta = new ArrayList<>();
     List<String> contestadasCorrectas = new ArrayList<>();
     List<String> contestadasIncorrectas = new ArrayList<>();
+
+    List<String> tiemposPreguntas = new ArrayList<>();
     Button enviar;
     int duracion = Toast.LENGTH_SHORT;
     int contadorCorrectas = 0;
@@ -98,6 +100,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void onClick(View v) {
 
                 String mensaje = "";
+
 
                 int contadorPreguntes = 0;
                 for (int i = 0; i < listaRadioGroup.size(); i++) {
@@ -163,6 +166,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         countDownTimer.start();
 
     }
+
+
 
     @Override
     protected void onDestroy() {
