@@ -172,17 +172,22 @@ public class MainActivity extends AppCompatActivity  {
                     if (listaObjetoPregunta.get(i).getRespostes().get(j).getResposta().equals(valor)) {
                         if(listaObjetoPregunta.get(i).getRespostes().get(j).isCorrecta()) {
                             contadorCorrectas++;//Si es true sumamos 1 a la lista del contador de correctas
-                            Log.e("contador correctas",""+contadorCorrectas);
-                            contestadasCorrectas.add("Pregunta "+i+",Respuesta: "+valor);//Añadimos la respuesta que hemos contestado correctamente a la lista de correctas
+                            //Log.e("contador correctas",""+contadorCorrectas);
+                            contestadasCorrectas.add("Pregunta "+(i+1)+",Respuesta: "+valor);//Añadimos la respuesta que hemos contestado correctamente a la lista de correctas
+
                         }else {
                             contadorIncorrectas++;//Si es false sumamos 1 a la lista del contador de falsas
-                            Log.e("contador incorrectas",""+contadorIncorrectas);
-                            contestadasIncorrectas.add("Pregunta "+i+",Respuesta: "+valor);//Añadimos la respuesta que hemos contestado correctamente a la lista de incorrectas
+                            //Log.e("contador incorrectas",""+contadorIncorrectas);
+                            contestadasIncorrectas.add("Pregunta "+(i+1)+",Respuesta: "+valor);//Añadimos la respuesta que hemos contestado correctamente a la lista de incorrectas
+
                         }
                     }
                 }}}
                 else
                     mensaje = "Faltan preguntas por contestar";
+
+                Log.e("Respuestas correctas",""+contestadasCorrectas);
+                Log.e("Respuestas incorrectas",""+contestadasIncorrectas);
 
 
 
