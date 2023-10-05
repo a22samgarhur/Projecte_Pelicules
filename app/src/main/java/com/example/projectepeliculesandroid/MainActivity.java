@@ -173,11 +173,11 @@ public class MainActivity extends AppCompatActivity  {
                         if(listaObjetoPregunta.get(i).getRespostes().get(j).isCorrecta()) {
                             contadorCorrectas++;//Si es true sumamos 1 a la lista del contador de correctas
                             Log.e("contador correctas",""+contadorCorrectas);
-                            contestadasCorrectas.add(valor);//Añadimos la respuesta que hemos contestado correctamente a la lista de correctas
+                            contestadasCorrectas.add("Pregunta "+i+",Respuesta: "+valor);//Añadimos la respuesta que hemos contestado correctamente a la lista de correctas
                         }else {
                             contadorIncorrectas++;//Si es false sumamos 1 a la lista del contador de falsas
                             Log.e("contador incorrectas",""+contadorIncorrectas);
-                            contestadasIncorrectas.add(valor);//Añadimos la respuesta que hemos contestado correctamente a la lista de incorrectas
+                            contestadasIncorrectas.add("Pregunta "+i+",Respuesta: "+valor);//Añadimos la respuesta que hemos contestado correctamente a la lista de incorrectas
                         }
                     }
                 }}}
@@ -240,7 +240,7 @@ public class MainActivity extends AppCompatActivity  {
         TextView titolPregunta = new TextView(this);
         titolPregunta.setTextSize(20);
         titolPregunta.setTextColor(Color.BLACK);
-        titolPregunta.setText(preguntasResponse.getPreguntes().get(i).getPregunta());//Le pasamos el titulo de la pregunta
+        titolPregunta.setText(i+1+"."+preguntasResponse.getPreguntes().get(i).getPregunta());//Le pasamos el titulo de la pregunta
         linear.addView(titolPregunta);//La añadimos a la vista para que la muestre
 
         //Creamos un Radiogrup para meter ahi los Radiobuttons
