@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class Pregunta {
-    String id;
+    /*String id;
     String nom;
     HashMap<String,Boolean> respostas;
     List<String>llistaRespostas;
@@ -48,5 +48,5 @@ public class Pregunta {
 
     public void setUrl(String url) {
         this.url = url;
-    }
+    }*/
 }
