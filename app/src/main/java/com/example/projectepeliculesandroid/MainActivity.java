@@ -44,11 +44,12 @@ public class MainActivity extends AppCompatActivity  {
     List<Preguntas> listaObjetoPregunta = new ArrayList<>();
     List<String> contestadasCorrectas = new ArrayList<>();
     List<String> contestadasIncorrectas = new ArrayList<>();
+    List<RespostaSelecionada> respostaSelecionada = new ArrayList<>();
     Button enviar;
     int duracion = Toast.LENGTH_SHORT;
     int contadorCorrectas = 0;
     int contadorIncorrectas = 0;
-    Boolean todasContestadas = false;
+
     ;
 
 
@@ -71,10 +72,9 @@ public class MainActivity extends AppCompatActivity  {
         // Crear una instancia de la interfaz de la API
         preguntesAPI preguntesAPI = retrofit.create(preguntesAPI.class);
 
-
         // Realizar la solicitud a la API
         Call<preguntasResponse> call = preguntesAPI.getPreguntes();
-        Log.e("Prueba1","Antes de entrar al enqueue");
+        //Log.e("Prueba1","Antes de entrar al enqueue");
 
         call.enqueue(new Callback<preguntasResponse>() {
 
@@ -143,9 +143,9 @@ public class MainActivity extends AppCompatActivity  {
             public void onClick(View v) {
 
                 String mensaje = "";
-                int contadorPreguntes = 0;
                 String valor = "0";
                 boolean respondidas = true;
+                boolean correcta = true;
 
                 for (int i = 0; i < listaRadioGroup.size(); i++) {
 
@@ -163,7 +163,6 @@ public class MainActivity extends AppCompatActivity  {
                 for (int i = 0; i < listaRadioGroup.size(); i++) {
                     int id = listaRadioGroup.get(i).getCheckedRadioButtonId();//Cogemos la ID del boton pulsado
                     mensaje = "Todas las preguntas han sido contestadas";//Cambiamos el mensaje
-                    todasContestadas = true;
                     enviar.setEnabled(false);//Se desactivara el boton al cliclar
                     countDownTimer.cancel();//Se parara el temporizador al cliclar
                     RadioButton button = findViewById(id);//Creamos un boton i le ponemos el valor de la id que hemos extraido del Radio group
@@ -172,22 +171,55 @@ public class MainActivity extends AppCompatActivity  {
                     if (listaObjetoPregunta.get(i).getRespostes().get(j).getResposta().equals(valor)) {
                         if(listaObjetoPregunta.get(i).getRespostes().get(j).isCorrecta()) {
                             contadorCorrectas++;//Si es true sumamos 1 a la lista del contador de correctas
+                            correcta = true;
                             //Log.e("contador correctas",""+contadorCorrectas);
                             contestadasCorrectas.add("Pregunta "+(i+1)+",Respuesta: "+valor);//Añadimos la respuesta que hemos contestado correctamente a la lista de correctas
 
                         }else {
                             contadorIncorrectas++;//Si es false sumamos 1 a la lista del contador de falsas
+                            correcta = false;
                             //Log.e("contador incorrectas",""+contadorIncorrectas);
                             contestadasIncorrectas.add("Pregunta "+(i+1)+",Respuesta: "+valor);//Añadimos la respuesta que hemos contestado correctamente a la lista de incorrectas
-
                         }
+                        //Creem un objecta Resposta selecionada amb el valors que l'hi volem pasar
+                        RespostaSelecionada resposta = new RespostaSelecionada((i+1),valor,correcta);
+                        //Els anem afegim a una llista de RespostaSelecionada
+                        respostaSelecionada.add(resposta);
                     }
-                }}}
-                else
-                    mensaje = "Faltan preguntas por contestar";
+                }}
+                }
+                else{
+                    for (int i = 0; i < listaRadioGroup.size(); i++) {
+                        int id = listaRadioGroup.get(i).getCheckedRadioButtonId();//Cogemos la ID del boton pulsado
+                        mensaje = "Faltan preguntas por contestar";
+                        RadioButton button = findViewById(id);//Creamos un boton i le ponemos el valor de la id que hemos extraido del Radio group
+                        valor = button.getText().toString();//Aqui cogemos el valor que contiene el boton
+                        for(int j = 0; j < listaObjetoPregunta.get(i).getRespostes().size(); j++) {
+                            if (listaObjetoPregunta.get(i).getRespostes().get(j).getResposta().equals(valor)) {
+                                if(listaObjetoPregunta.get(i).getRespostes().get(j).isCorrecta()) {
+                                    contadorCorrectas++;//Si es true sumamos 1 a la lista del contador de correctas
+                                    correcta = true;
+                                    //Log.e("contador correctas",""+contadorCorrectas);
+                                    contestadasCorrectas.add("Pregunta "+(i+1)+",Respuesta: "+valor);//Añadimos la respuesta que hemos contestado correctamente a la lista de correctas
 
-                Log.e("Respuestas correctas",""+contestadasCorrectas);
-                Log.e("Respuestas incorrectas",""+contestadasIncorrectas);
+                                }else {
+                                    contadorIncorrectas++;//Si es false sumamos 1 a la lista del contador de falsas
+                                    correcta = false;
+                                    //Log.e("contador incorrectas",""+contadorIncorrectas);
+                                    contestadasIncorrectas.add("Pregunta "+(i+1)+",Respuesta: "+valor);//Añadimos la respuesta que hemos contestado correctamente a la lista de incorrectas
+                                }
+                                //Creem un objecta Resposta selecionada amb el valors que l'hi volem pasar
+                                RespostaSelecionada resposta = new RespostaSelecionada((i+1),valor,correcta);
+                                //Els anem afegim a una llista de RespostaSelecionada
+                                respostaSelecionada.add(resposta);
+                            }
+                        }}
+
+                }
+
+
+                //Log.e("Respuestas correctas",""+contestadasCorrectas);
+                //Log.e("Respuestas incorrectas",""+contestadasIncorrectas);
 
 
 
@@ -195,6 +227,34 @@ public class MainActivity extends AppCompatActivity  {
                 //Creamos Toast para que cree un mensaje emergente
                 Toast toast = Toast.makeText(getApplicationContext(), mensaje, duracion);
                 toast.show();//Usamos show para que muestre el mensaje
+                for (int i = 0; i < respostaSelecionada.size(); i++) {
+                    Log.e("Respostes", respostaSelecionada.get(i).getResposta());
+
+                }
+
+                //Construimos el objeto respostesServer para enviarle esa lista al server
+                RespostesServer respostesServer = new RespostesServer(respostaSelecionada);
+
+
+
+
+                // Realizar la solicitud a la API
+                Call<RespostesServer> call2 = preguntesAPI.postRespostes(respostesServer);
+                //Log.e("Prueba1","Antes de entrar al enqueue");
+                call2.enqueue(new Callback<RespostesServer>() {
+                    @Override
+                    public void onResponse(Call<RespostesServer> call2, Response<RespostesServer> response) {
+                        Log.e("Prueba1","dentro del on response");
+                        if (response.isSuccessful()) {
+
+                        }
+                    }
+                    @Override
+                    public void onFailure(Call<RespostesServer> call, Throwable t) {
+                        // Manejar errores de la solicitud
+                    }
+                });
+
             }
         });
     }

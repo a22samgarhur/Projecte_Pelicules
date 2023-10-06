@@ -1,5 +1,6 @@
 package com.example.projectepeliculesandroid;
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
@@ -11,6 +12,6 @@ public interface preguntesAPI {
         Call<preguntasResponse> getPreguntes();
 
         @POST("/respostes")
-        Call<preguntasResponse> getWeather();
+        Call<RespostesServer> postRespostes(@Body RespostesServer respostes);
 
 }
