@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity  {
     List<String> contestadasCorrectas = new ArrayList<>();
     List<String> contestadasIncorrectas = new ArrayList<>();
     List<RespostaSelecionada> respostaSelecionada = new ArrayList<>();
+
     Button enviar;
     int duracion = Toast.LENGTH_SHORT;
     int contadorCorrectas = 0;
@@ -62,6 +63,9 @@ public class MainActivity extends AppCompatActivity  {
         temporizador = findViewById(R.id.textViewtemporizador);//Inicializamos el Text view del temporizador
         temporizador.setTextColor(Color.RED);
         iniciarTemporizador();//Llamamos a la funcion para que inicie el temporizador
+
+        enviar = findViewById(R.id.botonEnviar);
+        enviar.setText("Enviar respuestas");
 
         // Configurar Retrofit
         Retrofit retrofit = new Retrofit.Builder()
@@ -133,9 +137,7 @@ public class MainActivity extends AppCompatActivity  {
         } catch (JSONException e) {
             e.printStackTrace();
         }*/
-        enviar = new Button(this);
-        enviar.setText("Enviar respuestas");
-        linear.addView(enviar);
+
 
 
         enviar.setOnClickListener(new View.OnClickListener() {

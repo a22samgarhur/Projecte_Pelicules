@@ -27,18 +27,25 @@
         android:textStyle="bold"
         android:layout_below="@id/cabezera"/>
 
+    <Button
+        android:id="@+id/botonEnviar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Button"
+        android:layout_below="@id/textViewtemporizador"/>
+
 
     <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/textViewtemporizador">
+        android:layout_below="@id/botonEnviar">
 
         <LinearLayout
             android:id="@+id/linear"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
         </LinearLayout>
 
     </ScrollView>
