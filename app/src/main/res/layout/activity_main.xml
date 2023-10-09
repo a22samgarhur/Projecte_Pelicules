@@ -34,18 +34,32 @@
         android:text="Button"
         android:layout_below="@id/textViewtemporizador"/>
 
+    <TextView
+        android:id="@+id/resultats"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/botonEnviar"
+        android:background="#8CBCC3"
+        android:fontFamily="sans-serif"
+        android:text="TextView"
+        android:textColor="#050505"
+        android:textSize="16sp"
+        android:textStyle="bold|italic"
+        android:visibility="invisible" />
+
 
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/botonEnviar">
+        android:layout_below="@id/resultats">
 
         <LinearLayout
             android:id="@+id/linear"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
         </LinearLayout>
 
     </ScrollView>

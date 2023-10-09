@@ -190,35 +190,15 @@ public class MainActivity extends AppCompatActivity  {
                         respostaSelecionada.add(resposta);
                     }
                 }}
-                }
-                else{
-                    for (int i = 0; i < listaRadioGroup.size(); i++) {
-                        int id = listaRadioGroup.get(i).getCheckedRadioButtonId();//Cogemos la ID del boton pulsado
-                        mensaje = "Faltan preguntas por contestar";
-                        RadioButton button = findViewById(id);//Creamos un boton i le ponemos el valor de la id que hemos extraido del Radio group
-                        valor = button.getText().toString();//Aqui cogemos el valor que contiene el boton
-                        for(int j = 0; j < listaObjetoPregunta.get(i).getRespostes().size(); j++) {
-                            if (listaObjetoPregunta.get(i).getRespostes().get(j).getResposta().equals(valor)) {
-                                if(listaObjetoPregunta.get(i).getRespostes().get(j).isCorrecta()) {
-                                    contadorCorrectas++;//Si es true sumamos 1 a la lista del contador de correctas
-                                    correcta = true;
-                                    //Log.e("contador correctas",""+contadorCorrectas);
-                                    contestadasCorrectas.add("Pregunta "+(i+1)+",Respuesta: "+valor);//Añadimos la respuesta que hemos contestado correctamente a la lista de correctas
 
-                                }else {
-                                    contadorIncorrectas++;//Si es false sumamos 1 a la lista del contador de falsas
-                                    correcta = false;
-                                    //Log.e("contador incorrectas",""+contadorIncorrectas);
-                                    contestadasIncorrectas.add("Pregunta "+(i+1)+",Respuesta: "+valor);//Añadimos la respuesta que hemos contestado correctamente a la lista de incorrectas
-                                }
-                                //Creem un objecta Resposta selecionada amb el valors que l'hi volem pasar
-                                RespostaSelecionada resposta = new RespostaSelecionada((i+1),valor,correcta);
-                                //Els anem afegim a una llista de RespostaSelecionada
-                                respostaSelecionada.add(resposta);
-                            }
-                        }}
-
+                    TextView resultats= findViewById(R.id.resultats);
+                    String resultatsFinals = "Respostes correctes: "+contadorCorrectas+"\nRespostes incorrectes: "+contadorIncorrectas+" ";
+                    resultats.setText(resultatsFinals);
+                    resultats.setVisibility(View.VISIBLE);
                 }
+                else
+                    mensaje = "Faltan preguntas por contestar";
+
 
 
                 //Log.e("Respuestas correctas",""+contestadasCorrectas);
