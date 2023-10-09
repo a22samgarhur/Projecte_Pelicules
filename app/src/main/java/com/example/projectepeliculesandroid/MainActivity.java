@@ -174,12 +174,13 @@ public class MainActivity extends AppCompatActivity  {
                             correcta = true;
                             //Log.e("contador correctas",""+contadorCorrectas);
                             contestadasCorrectas.add("Pregunta "+(i+1)+",Respuesta: "+valor);//Añadimos la respuesta que hemos contestado correctamente a la lista de correctas
-
+                            button.setBackgroundColor(Color.GREEN);
                         }else {
                             contadorIncorrectas++;//Si es false sumamos 1 a la lista del contador de falsas
                             correcta = false;
                             //Log.e("contador incorrectas",""+contadorIncorrectas);
                             contestadasIncorrectas.add("Pregunta "+(i+1)+",Respuesta: "+valor);//Añadimos la respuesta que hemos contestado correctamente a la lista de incorrectas
+                            button.setBackgroundColor(Color.RED);
                         }
                         //Creem un objecta Resposta selecionada amb el valors que l'hi volem pasar
                         RespostaSelecionada resposta = new RespostaSelecionada((i+1),valor,correcta);
